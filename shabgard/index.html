@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>شب‌گرد: روستای خاموش</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gulzar&family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== مقدمه ===== -->
+<section class="screen active" id="screen-intro">
+  <h1 class="title">شب‌گرد: روستای خاموش</h1>
+  <p class="subtitle">بازی همکاری دونفره — سه شب، یک راز، چهار پایان</p>
+  <div class="ornament">❖ ❖ ❖</div>
+  <div class="card">
+    <p class="story">
+      <b>سه هفته پیش، دکتر صالحی — استادِ شما — برای ضبطِ لالایی‌های کویری به روستای متروکِ «چاه‌سوخته» رفت و برنگشت.</b>
+      روستایی که چهل سال پیش در یک شبِ بادی یک‌شبه خالی شد؛ سفره‌ها پهن، چراغ‌ها روشن، و هیچ‌کس نماند که بگوید چرا.
+      حالا ردِ او را گرفته‌اید: <b>کاوشگر</b> شب‌هنگام واردِ روستا می‌شود و <b>رمزگشا</b> در ایستگاهِ تحقیقاتی،
+      پشتِ بی‌سیم و دستگاه‌های استاد می‌نشیند. آخرین یادداشتِ او فقط این بود:
+      <b>«آن چیز با تاریکی بیدار می‌شود. صدا را باور نکنید.»</b>
+    </p>
+  </div>
+  <div class="card">
+    <h3 style="color:var(--brass);margin-bottom:8px">🎮 این یک بازیِ واقعی است</h3>
+    <ul class="howto">
+      <li><b>دنیای تصادفی:</b> رمزها، نقشه‌ها و حتی نامِ آن چیز، از روی «کدِ شب» شما ساخته می‌شود — هر کد، یک بازیِ تازه.</li>
+      <li><b>سه شبِ داستانی:</b> پیشرفت ذخیره می‌شود؛ می‌توانید هر شب را یک روز بازی کنید.</li>
+      <li><b>منابع و خطر:</b> نفتِ چراغ تمام می‌شود، آرامش‌تان با هر اشتباه و هر صدا کم می‌شود، و وقتی او نزدیک شود... باید پنهان شوید.</li>
+      <li><b>انتخاب‌های شما</b> به یکی از <b>چهار پایانِ متفاوت</b> می‌رسد.</li>
+      <li>هر دو نفر لینک را باز کنید، تماس صوتی بگیرید، <b>صفحه‌ها را به هم نشان ندهید.</b> 🎧 هدفون توصیه می‌شود.</li>
+    </ul>
+  </div>
+  <div class="center"><button class="btn btn-gold" id="btn-to-seed">شروع ←</button></div>
+</section>
+
+<!-- ===== کد شب ===== -->
+<section class="screen" id="screen-seed">
+  <h1 class="title" style="font-size:1.9rem">کدِ شب</h1>
+  <p class="subtitle">هر دو بازیکن باید کدِ یکسان وارد کنند تا دنیایشان یکی ساخته شود</p>
+  <div class="card">
+    <p class="story" style="font-size:.92rem">یک نفر کد بسازد و با تماس به دیگری بگوید؛ یا کدِ هم‌بازی‌ات را وارد کن. <b>کدِ جدید = روستای جدید با رمزها و رازهای جدید.</b></p>
+    <div class="center" style="margin:14px 0">
+      <button class="btn btn-ghost" id="btn-gen-seed">🎲 ساختِ کدِ تازه</button>
+    </div>
+    <div class="center" id="gen-seed-out" style="display:none;margin-bottom:12px">
+      <span class="seed-pill" id="seed-pill"></span>
+      <p class="lock-note" style="margin-top:6px">این کد را به هم‌بازی‌ات بگو</p>
+    </div>
+    <div class="seed-box">
+      <input class="answer-input" id="in-seed" maxlength="12" placeholder="کدِ شب" autocomplete="off">
+      <button class="btn btn-gold" id="btn-use-seed">ورود</button>
+    </div>
+    <div class="feedback" id="fb-seed"></div>
+    <div id="resume-box" style="display:none;margin-top:10px" class="center">
+      <p style="font-size:.85rem;color:#8fe3b0">💾 برای این کد، بازیِ ذخیره‌شده‌ای پیدا شد.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== انتخاب نقش ===== -->
+<section class="screen" id="screen-role">
+  <h1 class="title" style="font-size:1.9rem">که هستی؟</h1>
+  <p class="subtitle" id="role-seed-note"></p>
+  <div class="roles">
+    <button class="role-btn" id="btn-role-p1">
+      <span class="icon">🔦</span>
+      <span class="name">کاوشگر</span>
+      <span class="desc">شب‌هنگام واردِ روستای متروک می‌شوم؛ خانه‌ها، قنات و قبرستان پیشِ روی من است.</span>
+    </button>
+    <button class="role-btn" id="btn-role-p2">
+      <span class="icon">📻</span>
+      <span class="name">رمزگشا</span>
+      <span class="desc">در ایستگاه ماندم؛ اسطرلاب، بی‌سیم، نقشه‌ی قنات و بایگانیِ استاد دستِ من است.</span>
+    </button>
+  </div>
+</section>
+
+<!-- ===== کاوشگر: روستا ===== -->
+<section class="screen" id="screen-hub">
+  <div class="hud">
+    <span class="stage-name" id="hud-night"></span>
+    <span class="stage-name" id="hud-seed" style="color:#8d7fae;font-size:.78rem"></span>
+  </div>
+  <div class="bars">
+    <div class="bar"><div class="lbl"><span>🧠 آرامش</span><span id="sanity-num"></span></div><div class="track"><div class="fill sanity" id="sanity-fill"></div></div></div>
+    <div class="bar"><div class="lbl"><span>🕯 نفتِ چراغ</span><span id="oil-num"></span></div><div class="track"><div class="fill oil" id="oil-fill"></div></div></div>
+  </div>
+  <div class="night-banner" id="night-banner"></div>
+  <div class="hub-grid" id="hub-grid"></div>
+  <div class="letters-bar" id="letters-bar"></div>
+  <div class="inventory" id="inventory"></div>
+</section>
+
+<!-- ===== کاوشگر: داخل مکان ===== -->
+<section class="screen" id="screen-loc">
+  <div class="hud">
+    <button class="btn btn-ghost btn-sm" id="btn-back-hub">→ بازگشت به روستا</button>
+    <span class="stage-name" id="loc-title"></span>
+  </div>
+  <div class="bars">
+    <div class="bar"><div class="lbl"><span>🧠</span><span id="sanity-num2"></span></div><div class="track"><div class="fill sanity" id="sanity-fill2"></div></div></div>
+    <div class="bar"><div class="lbl"><span>🕯</span><span id="oil-num2"></span></div><div class="track"><div class="fill oil" id="oil-fill2"></div></div></div>
+  </div>
+  <div id="loc-body"></div>
+</section>
+
+<!-- ===== رمزگشا: ایستگاه ===== -->
+<section class="screen" id="screen-station">
+  <h1 class="title" style="font-size:1.8rem">ایستگاهِ تحقیقاتی</h1>
+  <p class="subtitle">دستگاه‌های استاد — کاوشگر با بی‌سیم می‌گوید کِی و چگونه به کارشان بیندازی</p>
+  <div class="tabs" id="station-tabs"></div>
+  <div id="station-body"></div>
+</section>
+
+<!-- ===== گذار شب / پایان ===== -->
+<section class="screen" id="screen-night">
+  <div class="big-emoji" id="night-emoji">🌒</div>
+  <h1 class="title" id="night-title" style="font-size:2rem"></h1>
+  <div class="card center">
+    <p class="story" style="text-align:justify" id="night-text"></p>
+    <button class="btn btn-gold" style="margin-top:14px" id="btn-night-go"></button>
+  </div>
+</section>
+
+<section class="screen" id="screen-ending">
+  <div class="big-emoji" id="end-emoji"></div>
+  <h1 class="title" id="end-title" style="font-size:2rem"></h1>
+  <div class="card center ending-card">
+    <span class="ending-tag" id="end-tag"></span>
+    <p class="story" style="text-align:justify" id="end-text"></p>
+    <p style="color:#9a8cba;font-size:.85rem;margin-top:10px" id="end-stats"></p>
+    <button class="btn btn-gold" style="margin-top:14px" onclick="location.reload()">بازی با کدِ تازه</button>
+  </div>
+</section>
+
+<!-- ===== لایه‌های وحشت ===== -->
+<div class="vignette"></div>
+<div class="blackout" id="blackout"><span class="whisper" id="whisper-txt"></span></div>
+<div class="curse-toast" id="curse-toast"></div>
+
+<!-- شکار -->
+<div class="modal-back" id="hunt-back">
+  <div class="card modal center">
+    <div class="big-emoji" style="font-size:2.6rem">👁</div>
+    <h2 style="color:#ff6b81;font-family:'Gulzar',serif;font-size:1.5rem;line-height:2.2">او اینجاست</h2>
+    <p style="color:#ded2ef;font-size:.9rem">چراغ را بگیر و تکان نخور. <b>انگشتت را روی دایره نگه دار</b> تا از کنارت بگذرد. رهایش کنی، می‌فهمد.</p>
+    <div class="hold-wrap"><button class="hold-btn" id="hold-btn"><span class="ring"></span>پنهان شو</button></div>
+    <div class="feedback" id="fb-hunt"></div>
+  </div>
+</div>
+
+<!-- مودال جزئیات -->
+<div class="modal-back" id="detail-back">
+  <div class="card modal" style="position:relative">
+    <button class="close-x" id="detail-close">✕</button>
+    <h3 id="detail-title"></h3>
+    <div id="detail-body"></div>
+  </div>
+</div>
+
+<!-- انتخاب داستانی -->
+<div class="modal-back" id="choice-back">
+  <div class="card modal">
+    <h3 id="choice-title"></h3>
+    <p style="color:#ded2ef;font-size:.92rem;text-align:justify" id="choice-text"></p>
+    <div class="choice-row" id="choice-row"></div>
+  </div>
+</div>
+
+<button class="sound-toggle" id="snd">🔊</button>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
